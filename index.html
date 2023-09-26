@@ -33,13 +33,29 @@
             canvasCtx.fillStyle = "#ffffff"
 
             // Aqui é criada a função para a criação da linha central do ping-pong
-            canvasCtx.fillRect(window.innerWidth / 2 - lineWidth / 2, 0, lineWidth,window.innerHeight)
+            canvasCtx.fillRect(window.innerWidth / 2 - lineWidth / 2,
+            0, lineWidth,window.innerHeight)
 
             // Aqui é criada a raquete esquerda
-            canvasCtx.fillRect(10, 400, lineWidth, 200)
+            canvasCtx.fillRect(10, 300, lineWidth, 200)
 
             // Aqui seria a raquete direita
-            canvasCtx.fillRect()
+            canvasCtx.fillRect(window.innerWidth - lineWidth - 10,
+            120, lineWidth, 200)
+        
+
+            // iremos criar a bola
+            canvasCtx.beginPath()
+            canvasCtx.arc(200, 300, 20, 0, 2 * Math.PI, false)
+            canvasCtx.fill()
+
+            // placar do jogo
+            canvasCtx.font = "bold 72px Arial"
+            canvasCtx.textAlign = "center"
+            canvasCtx.textBaseline = "top"
+            canvasCtx.fillStyle = "blue"
+            canvasCtx.fillText("0", window.innerWidth / 4, 50)
+            canvasCtx.fillText("1", window.innerWidth / 4 + window.innerWidth / 2, 50)
         }
         setup()
         draw()
