@@ -13,32 +13,38 @@
         const canvasEl = document.querySelector("canvas"),
         canvasCtx = canvasEl.getContext("2d")
         const lineWidth = 15
+
         const field = {
             w: window.innerWidth,
             h: window.innerHeight,
             draw: function () {
                 // aqui é criada a função para a criação do campo de ping-pong
                 canvasCtx.fillStyle = "#286047"
-                canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+                canvasCtx.fillRect(0, 0, this.w, this.h)
             },
         }
-        
+        // Aqui é criada a função para a criação da linha central do ping-pong
+        const line = {
+            w: 15,
+            h: field.h,
+            draw: function () {
+                canvasCtx.fillStyle = "#ffffff"
+                canvasCtx.fillRect(field.w / 2 - this.w / 2, 0, this.w,this.h)
+            }
+        }        
 
         
         function setup() {
-            canvasEl.width = canvasCtx.width = window.w
-            canvasEl.height = canvasCtx.height = window.h
+            canvasEl.width = canvasCtx.width = field.w
+            canvasEl.height = canvasCtx.height = field.h
         }
         
         
         function draw() {
-            field.draw()           
+            field.draw()
+            line.draw()           
             
-            canvasCtx.fillStyle = "#ffffff"
-
-            // Aqui é criada a função para a criação da linha central do ping-pong
-            canvasCtx.fillRect(window.innerWidth / 2 - lineWidth / 2,
-            0, lineWidth,window.innerHeight)
+            
 
             // Aqui é criada a raquete esquerda
             canvasCtx.fillRect(10, 300, lineWidth, 200)
