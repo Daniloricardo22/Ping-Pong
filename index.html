@@ -14,35 +14,35 @@
         canvasCtx = canvasEl.getContext("2d")
         const lineWidth = 15
 
-        const field = {
-            w: window.innerWidth,
-            h: window.innerHeight,
+        const grama = {
+            largura: window.innerWidth,
+            altura: window.innerHeight,
             draw: function () {
                 // aqui é criada a função para a criação do campo de ping-pong
                 canvasCtx.fillStyle = "#286047"
-                canvasCtx.fillRect(0, 0, this.w, this.h)
+                canvasCtx.fillRect(0, 0, this.largura, this.altura)
             },
         }
         // Aqui é criada a função para a criação da linha central do ping-pong
-        const line = {
-            w: 15,
-            h: field.h,
+        const linha = {
+            largura: 15,
+            altura: grama.altura,
             draw: function () {
                 canvasCtx.fillStyle = "#ffffff"
-                canvasCtx.fillRect(field.w / 2 - this.w / 2, 0, this.w,this.h)
+                canvasCtx.fillRect(grama.largura / 2 - this.largura / 2, 0, this.largura,this.altura)
             }
         }        
 
         
         function setup() {
-            canvasEl.width = canvasCtx.width = field.w
-            canvasEl.height = canvasCtx.height = field.h
+            canvasEl.width = canvasCtx.width = grama.largura
+            canvasEl.height = canvasCtx.height = grama.altura
         }
         
         
         function draw() {
-            field.draw()
-            line.draw()           
+            grama.draw()
+            linha.draw()           
             
             
 
