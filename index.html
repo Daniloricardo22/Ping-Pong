@@ -13,22 +13,26 @@
         const canvasEl = document.querySelector("canvas"),
         canvasCtx = canvasEl.getContext("2d")
         const lineWidth = 15
-        /*const x = window.innerWidth / 2 - lineWidth / 2
-        const y = 0
-        const largura = lineWidth
-        const altura = window.innerHeight */
+        const field = {
+            w: window.innerWidth,
+            h: window.innerHeight,
+            draw: function () {
+                // aqui é criada a função para a criação do campo de ping-pong
+                canvasCtx.fillStyle = "#286047"
+                canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+            },
+        }
+        
 
         
         function setup() {
-            canvasEl.width = canvasCtx.width = window.innerWidth
-            canvasEl.height = canvasCtx.height = window.innerHeight 
+            canvasEl.width = canvasCtx.width = window.w
+            canvasEl.height = canvasCtx.height = window.h
         }
         
         
         function draw() {
-            // aqui é criada a função para a criação do campo de ping-pong
-            canvasCtx.fillStyle = "#286047"
-            canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+            field.draw()           
             
             canvasCtx.fillStyle = "#ffffff"
 
