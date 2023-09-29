@@ -59,8 +59,17 @@
             y: 0,
             largura: linha.largura,
             altura: 200,
+            speed: 5,
             _move: function () {
-                this.y = bola.y
+                if(this.y + this.altura / 2 < bola.y + bola.r) {
+                    this.y += this.speed
+                }else{
+                    this.y -= this.speed
+                }
+                
+            },
+            speedUp: function () {
+                this.speed += 2
             },
             draw: function () {
                 canvasCtx.fillStyle = "#ffffff"
@@ -74,7 +83,7 @@
         // placar do jogo
         const placar = {
             humano: 0,
-            computador: 1,
+            computador: 0,
             pontoHumano: function() {
                 this.humano++
             },
@@ -95,8 +104,8 @@
         
         // iremos criar a bola
         const bola = {
-            x: 0,
-            y: 0,
+            x: 1,
+            y: 1,
             r: 20,
             speed: 5,
             directionX: 1,
@@ -143,9 +152,17 @@
                 this.directionY *= -1
             },
 
+            _speedUp: function () {
+                this.speed += 3
+            },
+
             _inicio: function () {
+                this._speedUp()
+                raqueteDireita.speedUp()
                 this.x = grama.altura / 2
                 this.y = grama.largura / 2
+
+
             },
 
             _move: function() {
