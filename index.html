@@ -56,7 +56,7 @@
         // Aqui seria a raquete direita
         const raqueteDireita = {
             x: grama.largura - linha.largura - gapX,
-            y: 100,
+            y: 0,
             largura: linha.largura,
             altura: 200,
             _move: function () {
@@ -65,6 +65,7 @@
             draw: function () {
                 canvasCtx.fillStyle = "#ffffff"
                 canvasCtx.fillRect(this.x, this.y, this.largura, this.altura)
+
                 this._move()
 
             },
@@ -72,8 +73,8 @@
         
         // placar do jogo
         const placar = {
-            humano: 1,
-            computador: 2,
+            humano: 0,
+            computador: 1,
             pontoHumano: function() {
                 this.humano++
             },
@@ -84,7 +85,7 @@
                 canvasCtx.font = "bold 72px Arial"
                 canvasCtx.textAlign = "center"
                 canvasCtx.textBaseline = "top"
-                canvasCtx.fillStyle = "blue"
+                canvasCtx.fillStyle = "#01341D"
                 canvasCtx.fillText(this.humano, grama.largura / 4, 50)
                 canvasCtx.fillText(this.computador, grama.largura / 4 + grama.largura / 2, 50)
 
@@ -102,11 +103,25 @@
             directionY: 1,
             _calcPosition: function() {
                 //regra do jogador 1
-                if (this.x > grama.largura - this.r - raqueteEsquerda.largura - gapX) {
-                    if(this.y + this.r > raqueteEsquerda.y && this.y - this.r < raqueteEsquerda.y +raqueteEsquerda.altura){
+                if (this.x > grama.largura - this.r - raqueteDireita.largura - gapX) {
+                    if(
+                        this.y + this.r > raqueteDireita.y && this.y - this.r < raqueteDireita.y + raqueteDireita.altura){
                         this._reverseX()
                     }else {
-                        score.pontoHumano()
+                        placar.pontoHumano()
+                        this._inicio()
+                    }
+                }
+
+                // regra do segundo jogador
+                if(this.x < this.r + raqueteEsquerda.largura + gapX) {
+                    //verifica se a raquete está na posição y da bola
+                    if(
+                        this.y + this.r > raqueteEsquerda.y && this.y - this.r < raqueteEsquerda.y + raqueteEsquerda.altura 
+                    ) {
+                        this._reverseX()
+                    }else {
+                        placar.pontoComputador()
                         this._inicio()
                     }
                 }
